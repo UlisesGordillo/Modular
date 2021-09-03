@@ -1,16 +1,16 @@
 {
-  "name": "TimerOne",
-  "keywords": "timer",
-  "description": "Allow to use the built-in 16 bit Timer1",
+  "name": "Modular",
+  "keywords": "modular",
+  "description": "Allow to use the library to Modular Board for Arduino Nano",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/PaulStoffregen/TimerOne.git"
+    "url": "https://github.com/UlisesGordillo/Modular.git"
   },
   "frameworks": "arduino",
   "platforms":
   [
     "atmelavr",
-    "teensy"
+    "modular"
   ]
 }
