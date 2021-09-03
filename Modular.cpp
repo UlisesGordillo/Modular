@@ -19,8 +19,6 @@
 //                      1   2   3   4   5   6   7   8   9   10  11  12  13  14
 byte pines_dos[14]    ={A6, A7, 13,  8, NC, NC, NC, NC, NC, NC, A0, A1, A2, A3};
 byte pines_cuatro[14] ={ 3,  5, 12,  7, NC, NC, NC, NC, NC, NC, 10, 11,  6,  9};
-byte pines_cinco[14]  ={NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC};
-byte pines_seis[14]   ={NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC, NC};
 
 //---------------------------------------------------------------------------------------
 // Funciones para Entradas Analogicas
@@ -34,12 +32,12 @@ int AnalogInput::Read(){
   return analogRead(pinAnalogIn);
 }
 float AnalogInput::ReadVolt(){
-  dataAdc = analogRead(pinAnalogIn); 
+  dataAdc = analogRead(pinAnalogIn);
   return (float)dataAdc*5.0/1023.0;
 }
 bool AnalogInput::Change(int Porcentaje){
   dataAdc = Read();
-  if (abs(dataAdc - dataAdcLast) >= (1023/(Porcentaje*10))) { dataAdcLast = dataAdc; return 1; } 
+  if (abs(dataAdc - dataAdcLast) >= (1023/(Porcentaje*10))) { dataAdcLast = dataAdc; return 1; }
   else {                                                                        return 0; }
 }
 
@@ -62,7 +60,7 @@ void AnalogOutput::Write(byte data){
 //---------------------------------------------------------------------------------------
 // Funciones para Entradas Digitales
 DigitalInput::DigitalInput (byte Port){
-  pinDigitalIn=pines_cuatro[Port-1]; 
+  pinDigitalIn=pines_cuatro[Port-1];
 }
 void DigitalInput::Init(){
   pinMode(pinDigitalIn,INPUT);
@@ -73,7 +71,7 @@ bool DigitalInput::Read(){
 }
 bool DigitalInput::Change(){
   stateIn = Read();
-  if (stateIn!=stateInLast) { stateInLast=stateIn;  return 1; } 
+  if (stateIn!=stateInLast) { stateInLast=stateIn;  return 1; }
   else {                                            return 0; }
 }
 bool DigitalInput::Change(bool state){
@@ -82,14 +80,14 @@ bool DigitalInput::Change(bool state){
     stateInLast=stateIn;
     if (state == stateIn){  return 1; }
     else{                   return 0; }
-  } 
+  }
   else {                    return 0; }
 }
 
 //---------------------------------------------------------------------------------------
 // Funciones para Salidas Digitales
 DigitalOutput::DigitalOutput (byte Port){
-  pinDigitalOut=pines_cuatro[Port-1]; 
+  pinDigitalOut=pines_cuatro[Port-1];
 }
 void DigitalOutput::Init(){
   pinMode(pinDigitalOut,OUTPUT);
